@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scruby Medical Wear</title>
+  <style>
+    /* تنسيقات شاشة التحميل الافتتاحية */
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #1a0b2e; /* نفس درجة اللون البنفسجي الغامق للشعار */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .splash-logo-container {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: splashPulse 2s infinite ease-in-out;
+    }
+
+    .splash-logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .splash-spinner {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 3px solid transparent;
+      border-top: 3px solid #ffffff;
+      border-right: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: splashSpin 1.2s linear infinite;
+    }
+
+    @keyframes splashSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes splashPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* فئة لإخفاء الشاشة بعد التحميل */
+    .splash-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none; /* لضمان عدم حجب التفاعل بعد الإخفاء */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شاشة التحميل الافتتاحية -->
+  <div id="splash-screen">
+    <div class="splash-logo-container">
+      <div class="splash-spinner"></div>
+      <!-- تأكد أن مسار صورة اللوجو صحيح، مثلاً scruby-logo.png -->
+      <img src="scruby-logo.png" alt="Scruby Medical Wear Logo">
+    </div>
+  </div>
+
+  <!-- هنا تبدأ محتويات موقعك الأساسي -->
+  <div class="main-website-content">
+    <h1>مرحباً بك في موقع Scruby Medical Wear</h1>
+    <p>هنا باقي محتوى موقعك الأساسي...</p>
+  </div>
+
+  <script>
+    // إخفاء شاشة التحميل بسلاسة بعد 2.5 ثانية
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const splashScreen = document.getElementById('splash-screen');
+        if (splashScreen) {
+          splashScreen.classList.add('splash-hidden');
+        }
+      }, 2500); // 2500 ملي ثانية = 2.5 ثانية
+    });
+
+    // إذا كنت تريد الانتقال فعلياً لملف آخر بعد التوقف (في حال فصلت الصفحات مستقبلاً):
+    /*
+    setTimeout(function() {
+      window.location.href = "index.html"; 
+    }, 2500);
+    */
+  </script>
+
+</body>
+</html>
